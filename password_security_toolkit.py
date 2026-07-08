@@ -1,6 +1,7 @@
 print("\n=== Password Security Toolkit ===\n")
 print("Welcome to Password Security Toolkit!")
 print("A Strong Password can be a reason why your account will not be Hijacked in Future...\n")
+
 password = input('Enter Your Password Here for an Audit: ')
 print()
 
@@ -8,13 +9,14 @@ MIN_LENGTH = 8
 MAX_LENGTH = 12
 MAX_SCORE = 5
 
+#Function that checks the password and scores it according to its Length and what characters are involved in it.
 def pass_check(password):
     upper = 0
     digit = 0
     special = 0
     score = 0
-    lower = 0   #Not included in passwords normally so just counting but not going to used.
-    space = 0   #Not included in passwords normally so just counting but not going to used.
+    lower = 0   #Not included in passwords normally, so just counting but not going to be used.
+    space = 0   #Not included in passwords normally, so just counting but not going to be used.
 
     if len(password) >= MIN_LENGTH :
         score += 1
@@ -42,6 +44,7 @@ def pass_check(password):
     
     return upper, digit, special, score, space
 
+#Function that takes the password and it characteristics and gives suggestions to improve the password. 
 def suggestions(password, upper, digit, special, score, space):
     if space == 0:
         if score == 0 :
@@ -108,6 +111,7 @@ def suggestions(password, upper, digit, special, score, space):
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
+
 upper, digit, special, score, space = pass_check(password)
 
 suggestions(password, upper, digit, special, score, space)
@@ -127,3 +131,4 @@ while True:
 
     else:
         print("Invalid Choice! Give Choice inputting single characters like 'y' or 'Y' or 'n' or 'N' ")
+        

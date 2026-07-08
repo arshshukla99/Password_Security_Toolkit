@@ -111,11 +111,13 @@ def suggestions(password, upper, digit, special, score, space):
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
-
+# takes the arguments returned from the function pass_check() and store it in variable
 upper, digit, special, score, space = pass_check(password)
 
+#suggestions() function takes those arguments as parameters
 suggestions(password, upper, digit, special, score, space)
 
+#Choice for the User if he wants continuation on the password Audit
 while True:
     choice = input("\nDo you want to Audit Another Password ?\nEnter your Choice (Y/N) : ")
 

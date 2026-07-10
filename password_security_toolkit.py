@@ -53,7 +53,7 @@ def dict_check(password):
     temp_pass_found = False
     temp_word = ''
     
-    with open("common_passwords.txt", "r") as f:
+    with open("common_passwords.txt", "r",encoding='utf-8',errors='ignore') as f:
         wordlist = f.read().rstrip("\n").splitlines()
         for i in wordlist:
             if len(i) >= 3 and i in password.lower():
@@ -64,6 +64,18 @@ def dict_check(password):
                 temp_pass_found = True
                 break
         return temp_word_found, temp_word, temp_pass_found
+        
+def pattern_recognition(password):
+    sequential_found = False
+    sequential = ''
+
+    for i in password:
+        if i.isdigit():
+            if password[i] == password[i-1] and password[i+1] == password[i-2] and password[i+2] == password[i-3] :
+                sequential_found = True
+                sequential = password[i] + password[i+1] + password[i+2] + password[i+3] 
+            else:
+                continue
 
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):

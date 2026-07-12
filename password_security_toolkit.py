@@ -43,7 +43,7 @@ def pass_check(password):
     
     return upper, digit, special, score, space
 
-#dict_check() check is the password or a particular word in the password is in the wordlist or not and yields output accordingly.
+#dict_check() check is the password or a particular word in the password is in the wordlist or not.
 
 def dict_check(password):
     temp_word_found = False
@@ -74,16 +74,13 @@ def pattern_recognition_sequential(password):
         if i.isdigit():
             temp_num += i
             
-    for j in range(len(temp_num)-1):
+    for j in range(len(temp_num)):
         try:
             if int(temp_num[j]) + 1 == int(temp_num[j+1]):
                 seq_num += temp_num[j]
         except:
-            if temp_num[j].isdigit():
-                if int(temp_num[j]) - 1 == int(temp_num[j-1]):
-                    seq_num += temp_num[j]
-            else:
-                continue
+            if int(temp_num[j-1]) + 1 == int(temp_num[j]):
+                seq_num += temp_num[j]
                 
     if len(seq_num) >= 3:
         temp_seq_found = True

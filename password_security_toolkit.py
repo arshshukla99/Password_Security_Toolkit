@@ -8,8 +8,8 @@ MIN_LENGTH = 8
 MAX_LENGTH = 12
 MAX_SCORE = 5
 
-#pass_check() function that checks the password and scores it according to its Length and what characters are involved in it.
-def pass_check(password):
+#pass_score() function that checks the password and scores it according to its Length and what characters are involved in it.
+def pass_score(password):
     upper = 0
     digit = 0
     special = 0
@@ -75,17 +75,19 @@ def pattern_recognition_sequential(password):
             temp_num += i
             
     for j in range(len(temp_num)):
-        try:
-            if int(temp_num[j]) + 1 == int(temp_num[j+1]):
+            if j==0:
                 seq_num += temp_num[j]
-        except:
-            if int(temp_num[j-1]) + 1 == int(temp_num[j]):
+                
+            elif j!=0 and int(temp_num[j-1]) + 1 == int(temp_num[j]):
                 seq_num += temp_num[j]
                 
     if len(seq_num) >= 3:
         temp_seq_found = True
         
     return temp_seq_found, seq_num
+
+def pattern_recognition_block(password):
+    pass
 
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):
@@ -154,32 +156,36 @@ def suggestions(password, upper, digit, special, score, space):
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
-# takes the arguments returned from the function pass_check() and store it in variable
-upper, digit, special, score, space = pass_check(password)
+def pass_audit(password):
 
-#the dict_check() function checks the the password and return info about the password or a particular word in a password is found or not.
-dict_pass_found, dict_word_found, word_found = dict_check(password)
+    # takes the arguments returned from the function pass_score() and store it in variable
+    upper, digit, special, score, space = pass_score(password)
 
-if dict_pass_found == False:
-    if dict_word_found == True:
-        upper, digit, special, score, space = pass_check(password)
-        suggestions(password, upper, digit, special, score, space)
+    #the dict_check() function checks the the password and return info about the password or a particular word in a password is found or not.
+    dict_pass_found, dict_word_found, word_found = dict_check(password)
 
-        print("\n⚠ Dictionary Word Detected!\n")
-        print(f"Found word : '{word_found}' in Common Attack Dictionary\n")
-        print(f"It is recommended not to use common words in your password which can be found in Common Attack Dictionaries...")
+    if dict_pass_found == False:
+        if dict_word_found == True:
+            upper, digit, special, score, space = pass_score(password)
+            suggestions(password, upper, digit, special, score, space)
+
+            print("\n⚠ Dictionary Word Detected!\n")
+            print(f"Found word : '{word_found}' in Common Attack Dictionary\n")
+            print(f"It is recommended not to use common words in your password which can be found in Common Attack Dictionaries...")
+        else:
+            upper, digit, special, score, space = pass_score(password)
+            suggestions(password, upper, digit, special, score, space)
     else:
-        upper, digit, special, score, space = pass_check(password)
-        suggestions(password, upper, digit, special, score, space)
-else:
-    print(f"Your Password is too Common!\nFound in Common Attack Dictionary.\n\nYour Password Scored 0/{MAX_SCORE} in terms of Security.")
+        print(f"Your Password is too Common!\nFound in Common Attack Dictionary.\n\nYour Password Scored 0/{MAX_SCORE} in terms of Security.")
 
-#check for any Sequential Number Pattern in password.
-sequential_found, sequential = pattern_recognition_sequential(password)
+    #check for any Sequential Number Pattern in password.
+    sequential_found, sequential = pattern_recognition_sequential(password)
 
-if sequential_found:
-    print(f"\n⚠ Sequential Numbers : '{sequential}' found in password !\n• Try to Avoid Sequential Numbers in your password, as it can DECREASE your Password Strength.")
-    
+    if sequential_found:
+        print(f"\n⚠ Sequential Numbers : '{sequential}' found in password !\n• Try to Avoid Sequential Numbers in your password, as it can DECREASE your Password Strength.")
+
+pass_audit(password)
+
 #Choice for the User if he wants continuation on the password Audit
 while True:
     choice = input("\nDo you want to Audit Another Password ?\nEnter your Choice (Y/N) : ")
@@ -189,10 +195,7 @@ while True:
         print()
         password = retry_pass
         
-        upper, digit, special, score, space = pass_check(password)
-
-        dict_check(password)
-        pattern_recognition_sequential(password)
+        pass_audit(password)
                 
     elif choice.lower() == 'n':
         break

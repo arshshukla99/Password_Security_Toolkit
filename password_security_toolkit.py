@@ -87,7 +87,16 @@ def pattern_recognition_sequential(password):
     return temp_seq_found, seq_num
 
 def pattern_recognition_block(password):
-    pass
+    repeated = {}
+    for block_size in range(2, len(password)//2 + 1):
+
+        for start_index in range(0, len(password) - block_size + 1):
+            temp_block = password[start_index : start_index + block_size]
+
+            count =  password.count(temp_block)
+
+            if count >= 2:
+                repeated[temp_block] = count
 
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):

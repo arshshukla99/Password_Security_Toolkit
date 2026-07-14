@@ -1,4 +1,4 @@
-print("\n=== Password Security Toolkit v0.3 ===\n")
+print("\n=== Password Security Toolkit v0.4 ===\n")
 print("Welcome to Password Security Toolkit!")
 print("A Strong Password can be a reason why your account will not be Hijacked in Future...\n")
 password = input('Enter Your Password Here for an Audit: ')
@@ -86,17 +86,22 @@ def pattern_recognition_sequential(password):
         
     return temp_seq_found, seq_num
 
+#pattern_recognition_block() function check weather there is repeating blocks in a password
 def pattern_recognition_block(password):
-    repeated = {}
-    for block_size in range(2, len(password)//2 + 1):
+    temp_block_found = False
+    temp_block = ''
+    for block_size in range(2, len(password)//2 + 1):   #Sets a block size of 2, 3, 4 ... till the half length of password
+        for start_index in range(0, len(password) - block_size + 1):   #sets the starting index from which the block decided and subtracted by the block size
+            temp_block = password[start_index : start_index + block_size] # if block 'ab' starting index is 2 then it takes till 2 + blocksize to compare the block repeat after that block
 
-        for start_index in range(0, len(password) - block_size + 1):
-            temp_block = password[start_index : start_index + block_size]
+            index = start_index + len(temp_block)
 
-            count =  password.count(temp_block)
-
-            if count >= 2:
-                repeated[temp_block] = count
+            if temp_block == password[index : index + len(temp_block)]:
+                temp_block_found = True
+                break
+        if temp_block_found == True:
+            break
+    return temp_block_found, temp_block
 
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):
@@ -178,9 +183,8 @@ def pass_audit(password):
             upper, digit, special, score, space = pass_score(password)
             suggestions(password, upper, digit, special, score, space)
 
-            print("\n⚠ Dictionary Word Detected!\n")
-            print(f"Found word : '{word_found}' in Common Attack Dictionary\n")
-            print(f"It is recommended not to use common words in your password which can be found in Common Attack Dictionaries...")
+            print(f"\n⚠ Dictionary Word Found : '{word_found}'")
+            print(f"• It is recommended not to use common words in your password which can be found in Common Attack Dictionaries...")
         else:
             upper, digit, special, score, space = pass_score(password)
             suggestions(password, upper, digit, special, score, space)
@@ -192,6 +196,11 @@ def pass_audit(password):
 
     if sequential_found:
         print(f"\n⚠ Sequential Numbers : '{sequential}' found in password !\n• Try to Avoid Sequential Numbers in your password, as it can DECREASE your Password Strength.")
+
+    block_found, block = pattern_recognition_block(password)
+
+    if block_found:
+        print(f"\n⚠ Repeating Block Found : {block}\n• Try to avoid repeating blocks in you password as they increase the chance of guessing the password.")
 
 pass_audit(password)
 

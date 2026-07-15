@@ -1,6 +1,6 @@
-#Password Security Toolkit Roadmap (v0.3 → v1.0)
+# Password Security Toolkit Roadmap (v0.3 → v1.0)
 
-##🚀 v0.3 (Completed ✅)
+## 🚀 v0.3 (Completed ✅)
 
 * Features
 
@@ -19,7 +19,7 @@
 - Returning multiple values
 
 
-##🚀 v0.4 — Pattern Detection (Completed ✅)
+## 🚀 v0.4 — Pattern Detection (Completed ✅)
 
 Detect predictable password patterns.
 
@@ -47,7 +47,7 @@ Pattern matching
 * Learning Outcome
 Understand how attackers reduce search space by exploiting predictable human behavior.
 
-##🚀 v0.5 — Password Entropy
+## 🚀 v0.5 — Password Entropy
 
 Move from simple scoring to mathematical strength estimation.
 
@@ -64,7 +64,7 @@ Move from simple scoring to mathematical strength estimation.
 * Learning Outcome
 Learn why a 16-character random password is dramatically stronger than an 8-character complex one.
 
-##🚀 v0.6 — Crack Time Estimation
+## 🚀 v0.6 — Crack Time Estimation
 
 Estimate how long different attack types would take.
 
@@ -82,7 +82,7 @@ Estimate how long different attack types would take.
 * Learning Outcome
 Understand why stolen password hashes are a much bigger threat than login forms.
 
-##🚀 v0.7 — Password Audit Report
+## 🚀 v0.7 — Password Audit Report
 
 Turn raw analysis into a professional report.
 
@@ -100,7 +100,7 @@ Turn raw analysis into a professional report.
 * Learning Outcome
 Learn how security professionals communicate findings to clients.
 
-##🚀 v0.8 — Secure Password Generator
+## 🚀 v0.8 — Secure Password Generator
 
 Generate cryptographically secure passwords.
 
@@ -121,7 +121,7 @@ Generate cryptographically secure passwords.
 * Learning Outcome
 Learn how secure passwords are generated in real systems.
 
-##🚀 v0.9 — Architecture Refactor
+## 🚀 v0.9 — Architecture Refactor
 
 Transform the script into a maintainable application.
 

@@ -1,6 +1,6 @@
 print("\n=== Password Security Toolkit v0.4 ===\n")
 print("Welcome to Password Security Toolkit!")
-print("A Strong Password can be a reason why your account will not be Hijacked in Future...\n")
+print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
 password = input('Enter Your Password Here for an Audit: ')
 print()
 
@@ -103,6 +103,46 @@ def pattern_recognition_block(password):
             break
     return temp_block_found, temp_block
 
+#pattern_recognition_keyboard_walks() function check weather the password contains keyboard walks in the password.
+def pattern_recognition_keyboard_walks(password):
+    temp_walk_found = False
+    temp_walk = ''
+    with open("walks.txt","r",encoding='utf-8',errors='ignore') as f:
+        walks = f.read().splitlines()
+        
+        for walk in walks:
+            if walk[:4] in password.lower() :
+                temp_walk_found = True
+                temp_walk = walk[:4]
+                break
+            if walk[4:] in password.lower() :
+                temp_walk_found = True
+                temp_walk = walk[4:]
+                break
+    return temp_walk_found, temp_walk
+
+#pattern_recognition_alphabet_sequence() function checks weather the password contains alphabetical sequence in the password.
+def pattern_recognition_alphabet_sequence(password):
+    temp_alpha_found = False
+    temp_alpha_store = ''
+    temp_alpha = ''
+    
+    for i in password:
+        if i.isalpha():
+            temp_alpha_store += i
+            
+    for j in range(len(temp_alpha_store)):
+        if j == 0:
+            temp_alpha += temp_alpha_store[j]
+            
+        elif j != 0 and ord(temp_alpha_store[j-1].lower()) + 1 == ord(temp_alpha_store[j].lower()):
+            temp_alpha += temp_alpha_store[j]
+    
+    if len(temp_alpha) > 3:
+        temp_alpha_found = True
+    
+    return temp_alpha_found, temp_alpha
+    
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):
     if space == 0:
@@ -175,32 +215,45 @@ def pass_audit(password):
     # takes the arguments returned from the function pass_score() and store it in variable
     upper, digit, special, score, space = pass_score(password)
 
-    #the dict_check() function checks the the password and return info about the password or a particular word in a password is found or not.
+    #the Dictionary Check.
     dict_pass_found, dict_word_found, word_found = dict_check(password)
 
     if dict_pass_found == False:
         if dict_word_found == True:
-            upper, digit, special, score, space = pass_score(password)
             suggestions(password, upper, digit, special, score, space)
 
             print(f"\n⚠ Dictionary Word Found : '{word_found}'")
-            print(f"• It is recommended not to use common words in your password which can be found in Common Attack Dictionaries...")
+            print(f"• It is recommended not to use common words or numbers in your password which can be found in Common Attack Dictionaries...")
         else:
-            upper, digit, special, score, space = pass_score(password)
             suggestions(password, upper, digit, special, score, space)
     else:
         print(f"Your Password is too Common!\nFound in Common Attack Dictionary.\n\nYour Password Scored 0/{MAX_SCORE} in terms of Security.")
 
-    #check for any Sequential Number Pattern in password.
+
+    #The Pattern Check : Sequential Number.
     sequential_found, sequential = pattern_recognition_sequential(password)
 
     if sequential_found:
         print(f"\n⚠ Sequential Numbers : '{sequential}' found in password !\n• Try to Avoid Sequential Numbers in your password, as it can DECREASE your Password Strength.")
-
+    
+    #The Pattern Check : Repeating Blocks.
     block_found, block = pattern_recognition_block(password)
 
     if block_found:
         print(f"\n⚠ Repeating Block Found : {block}\n• Try to avoid repeating blocks in you password as they increase the chance of guessing the password.")
+    
+    #The Pattern Check : Keyboard Walks.
+    walk_found, walk = pattern_recognition_keyboard_walks(password)
+    
+    if walk_found:
+        print(f"\n⚠ Keyboard Walk Found : {walk}\n• Try to avoid keyboard walks in your password as they are in the Common Keyboard Walks Attack Dictionary.")
+
+    #The Pattern Check : Alphabetical Sequence
+    alpha_found, alpha = pattern_recognition_alphabet_sequence(password)
+    
+    if alpha_found:
+        print(f"\n⚠ Alphabetical Sequence Found : {alpha}\n• Try to avoid Alphabet Sequences in your password as they make the password more predictable.")
+
 
 pass_audit(password)
 

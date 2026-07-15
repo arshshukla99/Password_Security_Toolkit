@@ -1,43 +1,36 @@
-🛡 Password Security Toolkit Roadmap (v0.3 → v1.0)
+#Password Security Toolkit Roadmap (v0.3 → v1.0)
 
-🚀 v0.3 (Completed)
-Theme
+##🚀 v0.3 (Completed ✅)
 
-Dictionary Attacks
+* Features
 
-Features
-Password strength scoring
-Dictionary word detection
-Common password detection
-Password improvement suggestions
-Cybersecurity Topics
-Dictionary attacks
-Common password lists
-Password spraying vs dictionary attacks
-Programming Topics
-File handling
-String searching
-Functions
-Returning multiple values
+- Password strength scoring
+- Dictionary word detection
+- Common password detection
+- Password improvement suggestions
+- Cybersecurity Topics
+- Dictionary attacks
+- Common password lists
+- Password spraying vs dictionary attacks
+- Programming Topics
+- File handling
+- String searching
+- Functions
+- Returning multiple values
 
 
-🚀 v0.4 — Pattern Detection
-Goal
+##🚀 v0.4 — Pattern Detection (Completed ✅)
 
 Detect predictable password patterns.
 
-Features
-Sequential numbers
-Reverse sequences
-Alphabetical sequences
-Keyboard patterns
-Repeated characters
+* Features
+- Sequential numbers
+- Alphabetical sequences
+- Keyboard patterns
+- Repeated characters
 
-Alternating patterns
-
-Example
+* Example
 123456
-654321
 abcdef
 fedcba
 qwerty
@@ -46,202 +39,127 @@ aaaaaa
 abcabc
 121212
 
-Research Before Coding
-
-Cybersecurity
-
-Why attackers try patterns before brute force
-Rule-based attacks
-Hybrid attacks
-
-Programming
-
+* Programming
+Sliding Window
 String slicing
 Pattern matching
-Regular Expressions (optional)
-collections.Counter()
-Learning Outcome
 
+* Learning Outcome
 Understand how attackers reduce search space by exploiting predictable human behavior.
 
-🚀 v0.5 — Password Entropy
-Goal
+##🚀 v0.5 — Password Entropy
 
 Move from simple scoring to mathematical strength estimation.
 
-Features
-Character pool calculation
-Entropy calculation
-Entropy rating
+*Features
+- Character pool calculation
+- Entropy calculation
+- Entropy rating
 
-Research Before Coding
+* Programming
+- math.log2()
+- Mathematical formulas
+- Floating point numbers
 
-Cybersecurity
-
-Password entropy
-Information theory (basic)
-Why entropy matters
-
-Programming
-
-math.log2()
-Mathematical formulas
-Floating point numbers
-Learning Outcome
-
+* Learning Outcome
 Learn why a 16-character random password is dramatically stronger than an 8-character complex one.
 
-🚀 v0.6 — Crack Time Estimation
-Goal
+##🚀 v0.6 — Crack Time Estimation
 
 Estimate how long different attack types would take.
 
-Features
-Offline attack estimate
-Online attack estimate
-GPU attack estimate
-Human-readable time output
+* Features
+- Offline attack estimate
+- Online attack estimate
+- GPU attack estimate
+- Human-readable time output
 
-Research Before Coding
+* Programming
+- Unit conversions
+- Time formatting
+- Large numbers
 
-Cybersecurity
-
-Brute-force attacks
-Hashcat
-Password cracking speed
-Online vs Offline attacks
-
-Programming
-
-Unit conversions
-Time formatting
-Large numbers
-Learning Outcome
-
+* Learning Outcome
 Understand why stolen password hashes are a much bigger threat than login forms.
 
-🚀 v0.7 — Password Audit Report
-Goal
+##🚀 v0.7 — Password Audit Report
 
 Turn raw analysis into a professional report.
 
-Features
-Audit summary
-Risk rating
-Recommendations
-Organized output
+* Features
+- Audit summary
+- Risk rating
+- Recommendations
+- Organised output
 
-Research Before Coding
+* Programming
+- Formatting
+- Tables
+- ANSI terminal colors (optional)
 
-Cybersecurity
-
-Risk communication
-Security reports
-Vulnerability severity
-
-Programming
-
-Formatting
-Tables
-ANSI terminal colors (optional)
-Learning Outcome
-
+* Learning Outcome
 Learn how security professionals communicate findings to clients.
 
-🚀 v0.8 — Secure Password Generator
-Goal
+##🚀 v0.8 — Secure Password Generator
 
 Generate cryptographically secure passwords.
 
-Features
-Custom length
-Symbols
-Numbers
-Uppercase
-Lowercase
-Exclude ambiguous characters
-Passphrase mode (optional)
+* Features
+- Custom length
+- Symbols
+- Numbers
+- Uppercase
+- Lowercase
+- Exclude ambiguous characters
+- Passphrase mode (optional)
 
-Research Before Coding
+* Programming
+- secrets module
+- Random selection
+- Lists
 
-Cybersecurity
-
-Cryptographically Secure PRNG
-Why random isn't suitable for passwords
-Password managers
-
-Programming
-
-secrets module
-Random selection
-Lists
-Learning Outcome
-
+* Learning Outcome
 Learn how secure passwords are generated in real systems.
 
-🚀 v0.9 — Architecture Refactor
-Goal
+##🚀 v0.9 — Architecture Refactor
 
 Transform the script into a maintainable application.
 
-Features
-Modular project structure
-Separate analyzers
-Knowledge folder
-Report module
-Cleaner main file
-Folder Structure
-Password_Security_Toolkit/
+* Features
+- Modular project structure
+- Separate analysers
+- Knowledge folder
+- Report module
+- Cleaner main file
+- Folder Structure
 
+* Password_Security_Toolkit/
 main.py
-
 analyzer.py
-
 dictionary.py
-
 patterns.py
-
 entropy.py
-
 generator.py
-
 report.py
-
 knowledge/
-
 common_passwords.txt
-
 patterns.json
 
-Research Before Coding
+* Python
+- Importing modules
+- Packages
+- if __name__ == "__main__":
 
-Software Engineering
+* Learning Outcome
+Learn how real Python applications are organised.
 
-Modular design
-Separation of concerns
-Project structure
+## 🎯 v1.0 — Password Policy Auditor ⭐
 
-Python
+Analyse an organisation's password policy.
 
-Importing modules
-Packages
-if __name__ == "__main__":
-Learning Outcome
+* Features
 
-Learn how real Python applications are organized.
-
-🎯 v1.0 — Password Policy Auditor ⭐
-
-This becomes the flagship feature.
-
-Instead of analyzing one password...
-
-Analyze an organization's password policy.
-
-Features
-
-Evaluate
-
+- Evaluate
 Minimum length
 Maximum length
 Complexity requirements
@@ -253,6 +171,7 @@ Password reuse prevention
 Output
 PASSWORD POLICY AUDIT
 
+* Example:
 Minimum Length
 
 Current
@@ -269,28 +188,17 @@ NIST SP 800-63B
 
 Status
 Needs Improvement
-Research Before Coding
 
-Cybersecurity
+* Programming
+- JSON
+- Configuration files
+- Rule engines
+- Data models
 
-Modern password guidance
-Password expiration myths
-MFA
-Password reuse
-Blocklists
-Passphrases
-
-Programming
-
-JSON
-Configuration files
-Rule engines
-Data models
-Learning Outcome
-
+* Learning Outcome
 Learn how security consultants evaluate authentication policies rather than individual passwords.
 
-🌟 Optional Versions After v1.0
+## 🌟 Optional Versions After v1.0
 v1.1
 HTML Report
 v1.2
@@ -301,16 +209,3 @@ v1.4
 Breach Check using Have I Been Pwned (k-anonymity API)
 v1.5
 GUI (CustomTkinter)
-📚 Knowledge Roadmap
-
-By following this roadmap, you'll gradually build expertise in:
-
-Version	Cybersecurity	Programming
-v0.3	Dictionary attacks	File handling
-v0.4	Pattern attacks	String processing
-v0.5	Entropy	Mathematics
-v0.6	Password cracking	Calculations
-v0.7	Security reporting	Output formatting
-v0.8	Secure generation	secrets module
-v0.9	Software architecture	Modules & packages
-v1.0	Authentication policies	Rule engines & JSON

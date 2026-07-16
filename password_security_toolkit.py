@@ -1,6 +1,9 @@
+import math
+
 print("\n=== Password Security Toolkit v0.4 ===\n")
 print("Welcome to Password Security Toolkit!")
 print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
+
 password = input('Enter Your Password Here for an Audit: ')
 print()
 
@@ -107,7 +110,7 @@ def pattern_recognition_block(password):
 def pattern_recognition_keyboard_walks(password):
     temp_walk_found = False
     temp_walk = ''
-    with open("walks.txt","r",encoding='utf-8',errors='ignore') as f:
+    with open("keyboard_walks.txt","r",encoding='utf-8',errors='ignore') as f:
         walks = f.read().splitlines()
         
         for walk in walks:
@@ -142,7 +145,31 @@ def pattern_recognition_alphabet_sequence(password):
         temp_alpha_found = True
     
     return temp_alpha_found, temp_alpha
+
+def entropy_check(upper, lower, digit, special ):
+    total = 94
+    if lower == 0:
+        total -= 26
+    if upper == 0:
+        total -= 26
+    if digit == 0:
+        total -= 10
+    if special == 0:
+        total -= 32
     
+    entropy = (upper + lower + digit + special) * math.log2(total)
+
+    if entropy <= 30:
+        temp_final_entropy = f"Password Entropy: {entropy}\nEntropy Rating : Weak"
+    if entropy >= 40:
+        temp_final_entropy = f"Password Entropy : {entropy}\nEntropy Rating : Medium"
+    if entropy >= 50:
+        temp_final_entropy = f"Password Entropy : {entropy}\nEntropy Rating : Strong"
+    if entropy >= 70:
+        temp_final_entropy = f"Password Entropy : {entropy}\nEntropy Rating : Very Strong"
+    
+    return entropy, temp_final_entropy
+
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):
     if space == 0:
@@ -212,10 +239,10 @@ def suggestions(password, upper, digit, special, score, space):
 
 def pass_audit(password):
 
-    # takes the arguments returned from the function pass_score() and store it in variable
+    #Takes the arguments returned from the function pass_score() and store it in variable
     upper, digit, special, score, space = pass_score(password)
 
-    #the Dictionary Check.
+    #The Dictionary Check.
     dict_pass_found, dict_word_found, word_found = dict_check(password)
 
     if dict_pass_found == False:
@@ -254,10 +281,10 @@ def pass_audit(password):
     if alpha_found:
         print(f"\n⚠ Alphabetical Sequence Found : {alpha}\n• Try to avoid Alphabet Sequences in your password as they make the password more predictable.")
 
-
+#Initial Function call
 pass_audit(password)
 
-#Choice for the User if he wants continuation on the password Audit
+#Choice for the User if the user wants continuation on the password Audit
 while True:
     choice = input("\nDo you want to Audit Another Password ?\nEnter your Choice (Y/N) : ")
 

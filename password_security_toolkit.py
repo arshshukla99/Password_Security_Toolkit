@@ -157,18 +157,18 @@ def entropy_check(upper, lower, digit, special ):
     if special == 0:
         total -= 32
     
-    entropy = (upper + lower + digit + special) * math.log2(total)
+    temp_entropy = (upper + lower + digit + special) * math.log2(total)
 
-    if entropy <= 30:
-        temp_final_entropy = f"Password Entropy: {entropy}\nEntropy Rating : Weak"
-    if entropy >= 40:
-        temp_final_entropy = f"Password Entropy : {entropy}\nEntropy Rating : Medium"
-    if entropy >= 50:
-        temp_final_entropy = f"Password Entropy : {entropy}\nEntropy Rating : Strong"
-    if entropy >= 70:
-        temp_final_entropy = f"Password Entropy : {entropy}\nEntropy Rating : Very Strong"
+    if temp_entropy <= 30:
+        temp_final_entropy = f"Password Entropy: {temp_entropy}\nEntropy Rating : Weak"
+    if temp_entropy >= 40:
+        temp_final_entropy = f"Password Entropy : {temp_entropy}\nEntropy Rating : Medium"
+    if temp_entropy >= 50:
+        temp_final_entropy = f"Password Entropy : {temp_entropy}\nEntropy Rating : Strong"
+    if temp_entropy >= 70:
+        temp_final_entropy = f"Password Entropy : {temp_entropy}\nEntropy Rating : Very Strong"
     
-    return entropy, temp_final_entropy
+    return temp_entropy, temp_final_entropy
 
 #suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
 def suggestions(password, upper, digit, special, score, space):
@@ -280,7 +280,8 @@ def pass_audit(password):
     
     if alpha_found:
         print(f"\n⚠ Alphabetical Sequence Found : {alpha}\n• Try to avoid Alphabet Sequences in your password as they make the password more predictable.")
-
+    
+    
 #Initial Function call
 pass_audit(password)
 

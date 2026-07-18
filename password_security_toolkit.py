@@ -44,7 +44,7 @@ def pass_score(password):
     if digit >= 1:
         score += 1
     
-    return upper, digit, special, score, space
+    return upper, lower, digit, special, score, space
 
 #dict_check() check is the password or a particular word in the password is in the wordlist or not.
 
@@ -93,6 +93,7 @@ def pattern_recognition_sequential(password):
 def pattern_recognition_block(password):
     temp_block_found = False
     temp_block = ''
+    
     for block_size in range(2, len(password)//2 + 1):   #Sets a block size of 2, 3, 4 ... till the half length of password
         for start_index in range(0, len(password) - block_size + 1):   #sets the starting index from which the block decided and subtracted by the block size
             temp_block = password[start_index : start_index + block_size] # if block 'ab' starting index is 2 then it takes till 2 + blocksize to compare the block repeat after that block
@@ -158,15 +159,16 @@ def entropy_check(upper, lower, digit, special ):
         total -= 32
     
     temp_entropy = (upper + lower + digit + special) * math.log2(total)
-
-    if temp_entropy <= 30:
-        temp_final_entropy = f"Password Entropy: {temp_entropy}\nEntropy Rating : Weak"
-    if temp_entropy >= 40:
-        temp_final_entropy = f"Password Entropy : {temp_entropy}\nEntropy Rating : Medium"
-    if temp_entropy >= 50:
-        temp_final_entropy = f"Password Entropy : {temp_entropy}\nEntropy Rating : Strong"
+    if temp_entropy < 30:
+        temp_final_entropy = "Entropy Rating : Very Weak\n"
+    if temp_entropy >= 30 and temp_entropy < 40:
+        temp_final_entropy = "Entropy Rating : Weak\n"
+    if temp_entropy >= 40 and temp_entropy < 50:
+        temp_final_entropy = "Entropy Rating : Medium\n"
+    if temp_entropy >= 50 and temp_entropy < 70:
+        temp_final_entropy = "Entropy Rating : Strong\n"
     if temp_entropy >= 70:
-        temp_final_entropy = f"Password Entropy : {temp_entropy}\nEntropy Rating : Very Strong"
+        temp_final_entropy = f"Entropy Rating : Very Strong\n"
     
     return temp_entropy, temp_final_entropy
 
@@ -233,55 +235,61 @@ def suggestions(password, upper, digit, special, score, space):
                 print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
 
         elif score == MAX_SCORE:
-            print(f"Now This is what we called a Great Password! Your Password Scored {score}/{MAX_SCORE} in terms of Security.")
+            print(f"This can be a Great Password! Your Password Scored {score}/{MAX_SCORE} in terms of Security.")
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
 def pass_audit(password):
-
-    #Takes the arguments returned from the function pass_score() and store it in variable
-    upper, digit, special, score, space = pass_score(password)
-
-    #The Dictionary Check.
-    dict_pass_found, dict_word_found, word_found = dict_check(password)
-
-    if dict_pass_found == False:
-        if dict_word_found == True:
-            suggestions(password, upper, digit, special, score, space)
-
-            print(f"\n⚠ Dictionary Word Found : '{word_found}'")
-            print(f"• It is recommended not to use common words or numbers in your password which can be found in Common Attack Dictionaries...")
-        else:
-            suggestions(password, upper, digit, special, score, space)
-    else:
-        print(f"Your Password is too Common!\nFound in Common Attack Dictionary.\n\nYour Password Scored 0/{MAX_SCORE} in terms of Security.")
-
-
-    #The Pattern Check : Sequential Number.
-    sequential_found, sequential = pattern_recognition_sequential(password)
-
-    if sequential_found:
-        print(f"\n⚠ Sequential Numbers : '{sequential}' found in password !\n• Try to Avoid Sequential Numbers in your password, as it can DECREASE your Password Strength.")
+    print("="*100)
+    print(" "*35 +"Password Audit Report")
+    print("="*100)
     
-    #The Pattern Check : Repeating Blocks.
+    #yielding passowrd specifications and scoring
+    upper, lower, digit, special, score, space = pass_score(password)
+    
+    #The Theoretical Entropy Evaluation
+    entropy, final_entropy_report = entropy_check(upper, lower, digit, special)
+    print(f"\nTheoretical Entropy : {entropy}")
+    print(final_entropy_report)
+    
+    print("-"*75)
+    print(" "*25 + "Attack Pattern Analysis" )
+    print("-"*75)
+    
+    pass_found, word_found, word = dict_check(password)
+    seq_found, seq_num = pattern_recognition_sequential(password)
     block_found, block = pattern_recognition_block(password)
-
-    if block_found:
-        print(f"\n⚠ Repeating Block Found : {block}\n• Try to avoid repeating blocks in you password as they increase the chance of guessing the password.")
-    
-    #The Pattern Check : Keyboard Walks.
     walk_found, walk = pattern_recognition_keyboard_walks(password)
-    
-    if walk_found:
-        print(f"\n⚠ Keyboard Walk Found : {walk}\n• Try to avoid keyboard walks in your password as they are in the Common Keyboard Walks Attack Dictionary.")
-
-    #The Pattern Check : Alphabetical Sequence
     alpha_found, alpha = pattern_recognition_alphabet_sequence(password)
     
+    if pass_found :
+        print("Dictionary Word             : Found, Whole Password")
+    else:
+        if word_found:
+            print(f"Dictionary Word             : Found --> '{word}'")
+        else:
+            print("Dictionary Word             : Not Found")
+    
+    if seq_found :
+        print(f"Sequential Numbers          : Found --> '{seq_num}'")
+    else:
+        print("Sequential Numbers          : Not Found")
+    
+    if block_found:
+        print(f"Repeated Blocks             : Found --> '{block}'")
+    else:
+        print("Repeated Blocks             : Not Found")
+    
+    if walk_found :
+        print(f"Keyboard Walks              : Found --> '{walk}'")
+    else:
+        print("Keyboard Walks              : Not Found")
+    
     if alpha_found:
-        print(f"\n⚠ Alphabetical Sequence Found : {alpha}\n• Try to avoid Alphabet Sequences in your password as they make the password more predictable.")
-    
-    
+        print("Alphabetical Sequence       : Found --> '{alpha}'")
+    else:
+        print("Alphabetical Sequence       : Not Found")
+        
 #Initial Function call
 pass_audit(password)
 

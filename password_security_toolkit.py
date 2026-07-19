@@ -65,7 +65,7 @@ def dict_check(password):
                 break
     return temp_pass_found, temp_word_found, temp_word
 
-#pattern_recognition_sequential() Checks for Seqeuntial Number Pattern in the password.
+#pattern_recognition_sequential() Checks for Sequential Number Pattern in the password.
 sequential_found = False
 
 def pattern_recognition_sequential(password):
@@ -89,13 +89,13 @@ def pattern_recognition_sequential(password):
         
     return temp_seq_found, seq_num
 
-#pattern_recognition_block() function check weather there is repeating blocks in a password
+#pattern_recognition_block() function check weather there are repeating blocks in a password
 def pattern_recognition_block(password):
     temp_block_found = False
     temp_block = ''
     
     for block_size in range(2, len(password)//2 + 1):   #Sets a block size of 2, 3, 4 ... till the half length of password
-        for start_index in range(0, len(password) - block_size + 1):   #sets the starting index from which the block decided and subtracted by the block size
+        for start_index in range(0, len(password) - block_size + 1):   # Sets the starting index from which the block is decided and subtracted by the block size
             temp_block = password[start_index : start_index + block_size] # if block 'ab' starting index is 2 then it takes till 2 + blocksize to compare the block repeat after that block
 
             index = start_index + len(temp_block)
@@ -125,7 +125,7 @@ def pattern_recognition_keyboard_walks(password):
                 break
     return temp_walk_found, temp_walk
 
-#pattern_recognition_alphabet_sequence() function checks weather the password contains alphabetical sequence in the password.
+#pattern_recognition_alphabet_sequence() function checks whether the password contains alphabetical sequence in the password.
 def pattern_recognition_alphabet_sequence(password):
     temp_alpha_found = False
     temp_alpha_store = ''
@@ -147,7 +147,7 @@ def pattern_recognition_alphabet_sequence(password):
     
     return temp_alpha_found, temp_alpha
 
-def entropy_check(upper, lower, digit, special ):
+def entropy_check(upper, lower, digit, special):
     total = 94
     if lower == 0:
         total -= 26
@@ -159,21 +159,27 @@ def entropy_check(upper, lower, digit, special ):
         total -= 32
     
     temp_entropy = (upper + lower + digit + special) * math.log2(total)
-    if temp_entropy < 30:
-        temp_final_entropy = "Entropy Rating : Very Weak\n"
-    if temp_entropy >= 30 and temp_entropy < 40:
-        temp_final_entropy = "Entropy Rating : Weak\n"
-    if temp_entropy >= 40 and temp_entropy < 50:
-        temp_final_entropy = "Entropy Rating : Medium\n"
-    if temp_entropy >= 50 and temp_entropy < 70:
-        temp_final_entropy = "Entropy Rating : Strong\n"
-    if temp_entropy >= 70:
-        temp_final_entropy = f"Entropy Rating : Very Strong\n"
+    entropy_risk_points = 0
     
-    return temp_entropy, temp_final_entropy
+    if temp_entropy < 30:
+        temp_final_entropy = "Very Weak\n"
+        entropy_risk_points += 5
+    elif temp_entropy >= 30 and temp_entropy < 40:
+        temp_final_entropy = "Weak\n"
+        entropy_risk_points += 3
+    elif temp_entropy >= 40 and temp_entropy < 50:
+        temp_final_entropy = "Medium\n"
+        entropy_risk_points += 2
+    elif temp_entropy >= 50 and temp_entropy < 70:
+        temp_final_entropy = "Strong\n"
+        entropy_risk_points += 1
+    elif temp_entropy >= 70:
+        temp_final_entropy = "Very Strong\n"
+    
+    return temp_entropy, temp_final_entropy, entropy_risk_points
 
-#suggestions() function that takes the password and it characteristics and gives suggestions to improve the password.
-def suggestions(password, upper, digit, special, score, space):
+#recommendations() function that takes the password and it characteristics and gives suggestions to improve the password.
+def recommendations(password, upper, digit, special, score, space):
     if space == 0:
         if score == 0 :
             print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
@@ -184,7 +190,6 @@ def suggestions(password, upper, digit, special, score, space):
             if len(password) < MIN_LENGTH:
                 print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
             else:
-                print(f"Pretty Bad password choice. Your Password Score Overall {score}/{MAX_SCORE} in terms of Security.\n")
                 if len(password) < MAX_LENGTH:
                     print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
                 if upper == 0:
@@ -198,7 +203,6 @@ def suggestions(password, upper, digit, special, score, space):
             if len(password) < MIN_LENGTH:
                 print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
             else:
-                print(f"That is not a Good Password Honestly.\nYour Password Scored Overall {score}/{MAX_SCORE} in terms of Security.\n")
                 if len(password) < MAX_LENGTH:
                     print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
                 if upper == 0:
@@ -212,7 +216,6 @@ def suggestions(password, upper, digit, special, score, space):
             if len(password) < MIN_LENGTH:
                 print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
             else:
-                print(f"It is a decent one but still needs improvements.\nYour Password Scored Overall {score}/{MAX_SCORE} in terms of Security.\n")
                 if len(password) < MAX_LENGTH:
                     print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
                 if upper == 0:
@@ -223,7 +226,6 @@ def suggestions(password, upper, digit, special, score, space):
                     print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
 
         elif score == 4:
-            print(f"This is a Good One. But Still can be Better. Your Password Scored Overall {score}/{MAX_SCORE} in terms of Security.\n")
 
             if len(password) < MAX_LENGTH:
                 print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
@@ -235,26 +237,30 @@ def suggestions(password, upper, digit, special, score, space):
                 print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
 
         elif score == MAX_SCORE:
-            print(f"This can be a Great Password! Your Password Scored {score}/{MAX_SCORE} in terms of Security.")
+            print("None")
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
+def risk_assessment(password, risk_points):
+    pass
+    
 def pass_audit(password):
     print("="*100)
-    print(" "*35 +"Password Audit Report")
-    print("="*100)
+    print(" "*35 +"PASSWORD AUDIT REPORT")
+    print("="*100 + '\n')
     
-    #yielding passowrd specifications and scoring
+    # yielding password specifications and scoring
     upper, lower, digit, special, score, space = pass_score(password)
     
     #The Theoretical Entropy Evaluation
-    entropy, final_entropy_report = entropy_check(upper, lower, digit, special)
-    print(f"\nTheoretical Entropy : {entropy}")
-    print(final_entropy_report)
+    entropy, final_entropy_report, risk_points = entropy_check(upper, lower, digit, special)
+    print(f"Password length        : {len(password)} Characters")
+    print(f"Password Score         : {score} / 5")
+    print(f"Theoretical Entropy    : {round(entropy,2)}")
+    print(f"Entropy Rating         : {final_entropy_report}")
     
-    print("-"*75)
-    print(" "*25 + "Attack Pattern Analysis" )
-    print("-"*75)
+    print("-"*75 + '')
+    print("Attack Pattern Analysis\n" )
     
     pass_found, word_found, word = dict_check(password)
     seq_found, seq_num = pattern_recognition_sequential(password)
@@ -264,32 +270,44 @@ def pass_audit(password):
     
     if pass_found :
         print("Dictionary Word             : Found, Whole Password")
+        risk_points += 1
     else:
         if word_found:
             print(f"Dictionary Word             : Found --> '{word}'")
+            risk_points += 1
         else:
             print("Dictionary Word             : Not Found")
     
     if seq_found :
         print(f"Sequential Numbers          : Found --> '{seq_num}'")
+        risk_points += 1
     else:
         print("Sequential Numbers          : Not Found")
     
     if block_found:
         print(f"Repeated Blocks             : Found --> '{block}'")
+        risk_points += 1
     else:
         print("Repeated Blocks             : Not Found")
     
     if walk_found :
         print(f"Keyboard Walks              : Found --> '{walk}'")
+        risk_points += 1
     else:
         print("Keyboard Walks              : Not Found")
     
     if alpha_found:
-        print("Alphabetical Sequence       : Found --> '{alpha}'")
+        print("Alphabetical Sequence       : Found --> '{alpha}'\n")
+        risk_points += 1
     else:
-        print("Alphabetical Sequence       : Not Found")
-        
+        print("Alphabetical Sequence       : Not Found\n")
+    
+    print('-'*75 + '')
+    print("Recommendations\n")
+    
+    recommendations(password, upper, digit, special, score, space)
+    print('\n' + "="*100)
+    
 #Initial Function call
 pass_audit(password)
 
@@ -308,4 +326,5 @@ while True:
         break
 
     else:
-        print("Invalid Choice! Give Choice inputting single characters like 'y' or 'Y' or 'n' or 'N' ")
+        print("Invalid Choice! Give a choice by inputting single characters like 'y' or 'Y' or 'n' or 'N' ")
+        

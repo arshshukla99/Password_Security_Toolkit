@@ -162,19 +162,19 @@ def entropy_check(upper, lower, digit, special):
     entropy_risk_points = 0
     
     if temp_entropy < 30:
-        temp_final_entropy = "Very Weak\n"
+        temp_final_entropy = "Very Weak"
         entropy_risk_points += 5
     elif temp_entropy >= 30 and temp_entropy < 40:
-        temp_final_entropy = "Weak\n"
+        temp_final_entropy = "Weak"
         entropy_risk_points += 3
     elif temp_entropy >= 40 and temp_entropy < 50:
-        temp_final_entropy = "Medium\n"
+        temp_final_entropy = "Medium"
         entropy_risk_points += 2
     elif temp_entropy >= 50 and temp_entropy < 70:
-        temp_final_entropy = "Strong\n"
+        temp_final_entropy = "Strong"
         entropy_risk_points += 1
     elif temp_entropy >= 70:
-        temp_final_entropy = "Very Strong\n"
+        temp_final_entropy = "Very Strong"
     
     return temp_entropy, temp_final_entropy, entropy_risk_points
 
@@ -241,9 +241,28 @@ def recommendations(password, upper, digit, special, score, space):
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
-def risk_assessment(password, risk_points):
-    pass
-    
+#Shows Risk assessment according to risk points gained by the password
+def risk_assessment(final_entropy_report, risk_points):
+    if risk_points == 0:
+        print("Low Security risks, \nThis password is Consistent with the modern password guidance and NIST guidelines.\n")
+
+    elif risk_points > 0 and risk_points < 3:
+        print("This password is consistent with the modern password guidance.\n")
+        print('-'*75 + '')
+        print("NIST Password Guidance\n\n• Use passwords of at least 12–16 characters.\n• Prefer randomly generated passwords.\n• Use a unique password for every account.\n• Avoid dictionary words and predictable patterns.\n")
+
+    elif risk_points >= 3 and risk_points < 5:
+        print(f"Although the password has {final_entropy_report} theoretical entropy but it contains \npredictable human pattern which will reduce it resistance against \nmodern Password Cracking methods.\n")
+        print('-'*75 + '')
+        print("NIST Password Guidance\n\n• Use passwords of at least 12–16 characters.\n• Prefer randomly generated passwords.\n• Use a unique password for every account.\n• Avoid dictionary words and predictable patterns.\n")
+
+    elif risk_points >= 5 and risk_points < 8 :
+        print(f"This password has {final_entropy_report} theoretical entropy. Therefore, It has \nenrtropy score under the safe criteria as well as it \ncontains predictable human patterns which will highly reduce \nits resistance against modern Password Cracking methods.\n")
+
+    elif risk_points >= 8 :
+        print("This password will have very weak resistance against modern Password Cracking methods and can be easily exploited. Consider Changing it as soon as possible.\n")
+        
+
 def pass_audit(password):
     print("="*100)
     print(" "*35 +"PASSWORD AUDIT REPORT")
@@ -257,7 +276,7 @@ def pass_audit(password):
     print(f"Password length        : {len(password)} Characters")
     print(f"Password Score         : {score} / 5")
     print(f"Theoretical Entropy    : {round(entropy,2)}")
-    print(f"Entropy Rating         : {final_entropy_report}")
+    print(f"Entropy Rating         : {final_entropy_report}\n")
     
     print("-"*75 + '')
     print("Attack Pattern Analysis\n" )
@@ -297,17 +316,22 @@ def pass_audit(password):
         print("Keyboard Walks              : Not Found")
     
     if alpha_found:
-        print("Alphabetical Sequence       : Found --> '{alpha}'\n")
+        print(f"Alphabetical Sequence       : Found --> '{alpha}'\n")
         risk_points += 1
     else:
         print("Alphabetical Sequence       : Not Found\n")
     
     print('-'*75 + '')
+    print("Risk Assessment\n")
+    risk_assessment(final_entropy_report,risk_points)
+
+    print('-'*75 + '')
     print("Recommendations\n")
     
     recommendations(password, upper, digit, special, score, space)
     print('\n' + "="*100)
-    
+
+
 #Initial Function call
 pass_audit(password)
 

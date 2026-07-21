@@ -1,6 +1,6 @@
 import math
 
-print("\n=== Password Security Toolkit v0.4 ===\n")
+print("\n=== Password Security Toolkit v0.6 ===\n")
 print("Welcome to Password Security Toolkit!")
 print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
 
@@ -241,7 +241,7 @@ def recommendations(password, upper, digit, special, score, space):
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 
-#Shows Risk assessment according to risk points gained by the password
+#risk_assessment() function shows risk assessment according to risk points gained by the password.
 def risk_assessment(final_entropy_report, risk_points):
     if risk_points == 0:
         print("Low Security risks, \nThis password is Consistent with the modern password guidance and NIST guidelines.\n")
@@ -261,8 +261,26 @@ def risk_assessment(final_entropy_report, risk_points):
 
     elif risk_points >= 8 :
         print("This password will have very weak resistance against modern Password Cracking methods and can be easily exploited. Consider Changing it as soon as possible.\n")
-        
 
+#crack_time() function checks the cracking time of password from the attacker perspective if he trys offline password cracking with modern GPUs.
+def crack_time(password, upper, lower, digit, special):
+    total_characters = 0
+    
+    if upper != 0:
+        total_characters += 26
+    if lower != 0:
+        total_characters += 26
+    if digit != 0:
+        total_characters += 10
+    if special != 0:
+        total_characters += 32
+    
+    total_combinations = total_characters ** len(password)
+    
+    temp_crack = total_combinations / 10000000000 #estimated 100 billion password guesses/sec
+    
+    return temp_crack
+    
 def pass_audit(password):
     print("="*100)
     print(" "*35 +"PASSWORD AUDIT REPORT")
@@ -320,6 +338,10 @@ def pass_audit(password):
         risk_points += 1
     else:
         print("Alphabetical Sequence       : Not Found\n")
+    
+    pass_crack_time = crack_time(password, upper, lower, digit, special)
+    print(f"Estimated Crack time :\n\n{round((pass_crack_time/60), 10)} seconds\n{round((pass_crack_time/3600), 5)} hours\n{round((pass_crack_time/86400), 2)} days\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
+    
     
     print('-'*75 + '')
     print("Risk Assessment\n")

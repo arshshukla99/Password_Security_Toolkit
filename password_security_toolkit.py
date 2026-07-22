@@ -342,11 +342,12 @@ def pass_audit(password):
     pass_crack_time = crack_time(password, upper, lower, digit, special)
     print(f"Estimated Crack time :\n\n{round((pass_crack_time/60), 10)} seconds\n{round((pass_crack_time/3600), 5)} hours\n{round((pass_crack_time/86400), 2)} days\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
     
-    
+    #risk assessment in the output according to password quality
     print('-'*75 + '')
     print("Risk Assessment\n")
     risk_assessment(final_entropy_report,risk_points)
-
+    
+    #recommendations for the password
     print('-'*75 + '')
     print("Recommendations\n")
     

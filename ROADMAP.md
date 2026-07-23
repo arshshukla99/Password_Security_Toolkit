@@ -2,7 +2,7 @@
 
 ## 🚀 v0.3 (Completed ✅)
 
-** Features
+**Features**
 
 - Password strength scoring
 - Dictionary word detection
@@ -23,13 +23,13 @@
 
 Detect predictable password patterns.
 
-** Features
+**Features**
 - Sequential numbers
 - Alphabetical sequences
 - Keyboard patterns
 - Repeated characters
 
-** Example
+**Example**
 123456
 abcdef
 fedcba
@@ -39,72 +39,72 @@ aaaaaa
 abcabc
 121212
 
-** Programming
+**Programming**
 Sliding Window
 String slicing
 Pattern matching
 
-** Learning Outcome
+**Learning Outcome: **
 Understand how attackers reduce search space by exploiting predictable human behavior.
 
-## 🚀 v0.5 — Password Entropy
+## 🚀 v0.5 — Password Entropy (Completed ✅)
 
 Move from simple scoring to mathematical strength estimation.
 
-** Features
+**Features**
 - Character pool calculation
 - Entropy calculation
 - Entropy rating
 
-** Programming
+**Programming**
 - math.log2()
 - Mathematical formulas
 - Floating point numbers
 
-** Learning Outcome
+**Learning Outcome:**
 Learn why a 16-character random password is dramatically stronger than an 8-character complex one.
 
-## 🚀 v0.6 — Password Audit Report
+## 🚀 v0.6 — Password Audit Report (Completed ✅)
 
 Turn raw analysis into a professional report.
 
-** Features
+**Features**
 - Audit summary
 - Risk rating
 - Recommendations
 - Organised output
 
-** Programming
+**Programming**
 - Formatting
 - Tables
 - ANSI terminal colors (optional)
 
-** Learning Outcome
+**Learning Outcome:**
 Learn how security professionals communicate findings to clients.
 
-## 🚀 v0.7 — Crack Time Estimation
+## 🚀 v0.7 — Crack Time Estimation (In Progress ✅)
 
 Estimate how long different attack types would take.
 
-** Features
+**Features**
 - Offline attack estimate
 - Online attack estimate
 - GPU attack estimate
 - Human-readable time output
 
-** Programming
+**Programming**
 - Unit conversions
 - Time formatting
 - Large numbers
 
-* Learning Outcome
+**Learning Outcome:** 
 Understand why stolen password hashes are a much bigger threat than login forms.
 
 ## 🚀 v0.8 — Secure Password Generator
 
 Generate cryptographically secure passwords.
 
-** Features
+**Features**
 - Custom length
 - Symbols
 - Numbers
@@ -113,19 +113,19 @@ Generate cryptographically secure passwords.
 - Exclude ambiguous characters
 - Passphrase mode (optional)
 
-** Programming
+**Programming**
 - secrets module
 - Random selection
 - Lists
 
-** Learning Outcome
+**Learning Outcome:**
 Learn how secure passwords are generated in real systems.
 
 ## 🚀 v0.9 — Architecture Refactor
 
 Transform the script into a maintainable application.
 
-** Features
+**Features**
 - Modular project structure
 - Separate analysers
 - Knowledge folder
@@ -133,7 +133,7 @@ Transform the script into a maintainable application.
 - Cleaner main file
 - Folder Structure
 
-** Password_Security_Toolkit/
+**Password_Security_Toolkit/**
 main.py
 analyzer.py
 dictionary.py
@@ -145,19 +145,19 @@ knowledge/
 common_passwords.txt
 patterns.json
 
-** Python
+**Python**
 - Importing modules
 - Packages
 - if __name__ == "__main__":
 
-* Learning Outcome
+**Learning Outcome:**
 Learn how real Python applications are organised.
 
 ## 🎯 v1.0 — Password Policy Auditor ⭐
 
 Analyse an organisation's password policy.
 
-** Features
+**Features**
 
 - Evaluate
 Minimum length
@@ -171,7 +171,7 @@ Password reuse prevention
 Output
 PASSWORD POLICY AUDIT
 
-** Example:
+**Example** :
 Minimum Length
 
 Current
@@ -189,13 +189,13 @@ NIST SP 800-63B
 Status
 Needs Improvement
 
-** Programming
+**Programming**
 - JSON
 - Configuration files
 - Rule engines
 - Data models
 
-** Learning Outcome
+**Learning Outcome:**
 Learn how security consultants evaluate authentication policies rather than individual passwords.
 
 ## 🌟 Optional Versions After v1.0

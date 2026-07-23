@@ -44,7 +44,7 @@ Sliding Window
 String slicing
 Pattern matching
 
-**Learning Outcome: **
+**Learning Outcome:**
 Understand how attackers reduce search space by exploiting predictable human behavior.
 
 ## 🚀 v0.5 — Password Entropy (Completed ✅)
@@ -82,13 +82,11 @@ Turn raw analysis into a professional report.
 **Learning Outcome:**
 Learn how security professionals communicate findings to clients.
 
-## 🚀 v0.7 — Crack Time Estimation (In Progress ✅)
+## 🚀 v0.7 — Crack Time Estimation (Completed ✅)
 
 Estimate how long different attack types would take.
 
 **Features**
-- Offline attack estimate
-- Online attack estimate
 - GPU attack estimate
 - Human-readable time output
 

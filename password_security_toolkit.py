@@ -1,6 +1,6 @@
 import math
 
-print("\n=== Password Security Toolkit v0.6 ===\n")
+print("\n=== Password Security Toolkit v0.7 ===\n")
 print("Welcome to Password Security Toolkit!")
 print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
 

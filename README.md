@@ -10,7 +10,7 @@ This project is being developed incrementally to learn authentication security, 
 
 ## ✨ Features
 
-### Current Features (v0.4)
+### Current Features (v0.7)
 
 - Password Strength Scoring
 - Password Complexity Analysis
@@ -21,13 +21,14 @@ This project is being developed incrementally to learn authentication security, 
 - Keyboard Walk Detection
 - Alphabetical Sequence Detection
 - Password Improvement Suggestions
+- Password Entropy Calculation
+- Risk Assessment Suggestions based on Entropy and Pattern found
+- Offline Password Crack Estimation
 
 ---
 
 ## 🚀 Planned Features
 
-- Password Entropy Calculator
-- Password Crack Time Estimation
 - Secure Password Generator
 - Password Audit Reports
 - Password Policy Auditor (NIST Guidelines)
@@ -118,16 +119,61 @@ remote: Total 48 (delta 21), reused 0 (delta 0), pack-reused 0 (from 0)
 Receiving objects: 100% (48/48), 22.89 KiB | 366.00 KiB/s, done.
 Resolving deltas: 100% (21/21), done.
                                                                                                                                                                       
-┌──(kali㉿kali)-[~]
-└─$ cd Password_Security_Toolkit
-                                                                                                                                                                      
-┌──(kali㉿kali)-[~/Password_Security_Toolkit]
+┌──(kali㉿kali)-[~/Documents/Projects/Password_Security_Toolkit]
 └─$ python3 password_security_toolkit.py
 
-=== Password Security Toolkit v0.4 ===
+=== Password Security Toolkit v0.7 ===
 
 Welcome to Password Security Toolkit!
-A Strong Password can be a reason why your account will not be Hijacked in Future...
+A Strong Password can be a reason why your account will not be hijacked in Future...
 
-Enter Your Password Here for an Audit: 
+Enter Your Password Here for an Audit: oggy@1234
+
+====================================================================================================
+                                   PASSWORD AUDIT REPORT
+====================================================================================================
+
+Password length        : 9 Characters
+Password Score         : 3 / 5
+Theoretical Entropy    : 54.79
+Entropy Rating         : Strong
+
+---------------------------------------------------------------------------
+Attack Pattern Analysis
+
+Dictionary Word             : Found --> '1234'
+Sequential Numbers          : Found --> '1234'
+Repeated Blocks             : Not Found
+Keyboard Walks              : Found --> '1234'
+Alphabetical Sequence       : Not Found
+
+Estimated Crack time : 18.0 days
+(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)
+
+---------------------------------------------------------------------------
+Risk Assessment
+
+Although the password has Strong theoretical entropy but it contains 
+predictable human pattern which will reduce it resistance against 
+modern Password Cracking methods.
+
+---------------------------------------------------------------------------
+NIST Password Guidance
+
+• Use passwords of at least 12–16 characters.
+• Prefer randomly generated passwords.
+• Use a unique password for every account.
+• Avoid dictionary words and predictable patterns.
+
+---------------------------------------------------------------------------
+Recommendations
+
+• Try to increase length of your password upto 12 Characters.
+• Try Adding some Uppercase Letters into your password also.
+
+====================================================================================================
+
+Do you want to Audit Another Password ?
+Enter your Choice (Y/N) : n
+
 ```

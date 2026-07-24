@@ -58,6 +58,7 @@ Password-Security-Toolkit/
 - String Algorithms
 - Pattern Recognition
 - Modular Programming
+- Math Module
 
 ---
 

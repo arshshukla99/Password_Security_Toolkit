@@ -2,7 +2,7 @@ import math
 
 print("\n=== Password Security Toolkit v0.7 ===\n")
 print("Welcome to Password Security Toolkit!")
-print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
+print("A Strong Password can be a reason why your account will not be hijacked in future...\n")
 
 password = input('Enter Your Password Here for an Audit: ')
 print()
@@ -105,6 +105,7 @@ def pattern_recognition_block(password):
                 break
         if temp_block_found == True:
             break
+            
     return temp_block_found, temp_block
 
 #pattern_recognition_keyboard_walks() function check weather the password contains keyboard walks in the password.

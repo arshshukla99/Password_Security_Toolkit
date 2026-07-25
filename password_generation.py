@@ -13,10 +13,11 @@ while True:
     choice = int(input("Input the no. of characters of the password you want : "))
 
     if choice < 8 or choice > 16:
-        print("The Password should be in between 8 to 16 characters :/")
+        print("The Password should be in between 8 to 16 characters :/ \n")
 
     elif choice >= 8 or choice <= 16:
         password = ''
+        
         for i in range(choice):
             random = secrets.choice(allchar)
             password += random  

@@ -2,7 +2,7 @@ import math
 
 print("\n=== Password Security Toolkit v0.7 ===\n")
 print("Welcome to Password Security Toolkit!")
-print("A Strong Password can be a reason why your account will not be hijacked in future...\n")
+print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
 
 password = input('Enter Your Password Here for an Audit: ')
 print()
@@ -52,18 +52,20 @@ def dict_check(password):
     temp_word_found = False
     temp_pass_found = False
     temp_word = ''
-    
-    with open("common_passwords.txt", "r",encoding='utf-8',errors='ignore') as f:
-        wordlist = f.read().rstrip("\n").splitlines()
-        for i in wordlist:
-            if len(i) >= 3 and i in password.lower():
-                temp_word_found = True
-                temp_word = i
-                break
-            if len(i) >=3 and i == password.lower():
-                temp_pass_found = True
-                break
-    return temp_pass_found, temp_word_found, temp_word
+    try :
+        with open("common_passwords.txt", "r",encoding='utf-8',errors='ignore') as f:
+            wordlist = f.read().rstrip("\n").splitlines()
+            for i in wordlist:
+                if len(i) >= 3 and i in password.lower():
+                    temp_word_found = True
+                    temp_word = i
+                    break
+                if len(i) >=3 and i == password.lower():
+                    temp_pass_found = True
+                    break
+        return temp_pass_found, temp_word_found, temp_word
+    except :
+        return False, False, False
 
 #pattern_recognition_sequential() Checks for Sequential Number Pattern in the password.
 sequential_found = False
@@ -105,26 +107,30 @@ def pattern_recognition_block(password):
                 break
         if temp_block_found == True:
             break
-            
     return temp_block_found, temp_block
 
 #pattern_recognition_keyboard_walks() function check weather the password contains keyboard walks in the password.
 def pattern_recognition_keyboard_walks(password):
     temp_walk_found = False
     temp_walk = ''
-    with open("keyboard_walks.txt","r",encoding='utf-8',errors='ignore') as f:
-        walks = f.read().splitlines()
-        
-        for walk in walks:
-            if walk[:4] in password.lower() :
-                temp_walk_found = True
-                temp_walk = walk[:4]
-                break
-            if walk[4:] in password.lower() :
-                temp_walk_found = True
-                temp_walk = walk[4:]
-                break
-    return temp_walk_found, temp_walk
+ 
+    try:
+        with open("keyboard_walks.txt","r",encoding='utf-8',errors='ignore') as f:
+            walks = f.read().splitlines()
+
+            for walk in walks:
+                if walk[:4] in password.lower() :
+                    temp_walk_found = True
+                    temp_walk = walk[:4]
+                    break
+                if walk[4:] in password.lower() :
+                    temp_walk_found = True
+                    temp_walk = walk[4:]
+                    break
+        return temp_walk_found, temp_walk
+
+    except:
+        return False, False
 
 #pattern_recognition_alphabet_sequence() function checks whether the password contains alphabetical sequence in the password.
 def pattern_recognition_alphabet_sequence(password):
@@ -276,12 +282,25 @@ def crack_time(password, upper, lower, digit, special):
     if special != 0:
         total_characters += 32
     
-    total_combinations = total_characters ** len(password)
+    total_combinations = (total_characters ** len(password)) / 2
     
     temp_crack = total_combinations / 10000000000 #estimated 100 billion password guesses/sec
     
-    return temp_crack
+    if temp_crack < 60:
+        return str(round(temp_crack,3)) + ' seconds'
+        
+    elif temp_crack < 3600:
+        return str(round(temp_crack/60,2)) + ' minutes'
+        
+    elif temp_crack < 86400:
+        return str(round(temp_crack/3600,0)) + ' hours' 
     
+    elif temp_crack < 31353600:
+        return str(round(temp_crack/86400,0)) + ' days'
+    
+    else:
+        return str(round(temp_crack/31353600,0)) + ' years'
+        
 def pass_audit(password):
     print("="*100)
     print(" "*35 +"PASSWORD AUDIT REPORT")
@@ -341,20 +360,28 @@ def pass_audit(password):
         print("Alphabetical Sequence       : Not Found\n")
     
     pass_crack_time = crack_time(password, upper, lower, digit, special)
-    print(f"Estimated Crack time :\n\n{round((pass_crack_time/60), 10)} seconds\n{round((pass_crack_time/3600), 5)} hours\n{round((pass_crack_time/86400), 2)} days\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
+    print(f"Estimated Crack time : {pass_crack_time}\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
     
-    #risk assessment in the output according to password quality
+    
     print('-'*75 + '')
     print("Risk Assessment\n")
     risk_assessment(final_entropy_report,risk_points)
-    
-    #recommendations for the password
+
     print('-'*75 + '')
     print("Recommendations\n")
     
     recommendations(password, upper, digit, special, score, space)
-    print('\n' + "="*100)
+    print('\n' + "="*100 + '\n')
+    
+    try:
+        cp = open('common_passwords.txt')
+    except:
+        print("⚠ UNABLE TO FOUND 'common_password.txt'. Kindly install this wordlist for accurate analysis.")
 
+    try:
+        kw = open('keyboard_walks.txt')
+    except:
+        print("⚠ UNABLE TO FOUND 'keyboard_walks.txt'. Kindly install this wordlist for accurate analysis.")
 
 #Initial Function call
 pass_audit(password)

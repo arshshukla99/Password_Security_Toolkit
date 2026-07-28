@@ -1,9 +1,9 @@
 import string
 import secrets
 
-print('\n'+"="*100)
-print(" "*35 +"PASSWORD GENERATION TOOL")
-print("="*100 + '\n')
+print('\n'+"="*150)
+print(" "*60 +"PASSWORD GENERATION TOOL")
+print("="*150 + '\n')
 
 lower = string.ascii_lowercase
 upper = string.ascii_uppercase
@@ -11,13 +11,16 @@ digit = string.digits
 unichar = string.punctuation
 
 allchar = upper + lower + digit + unichar
+choice = 0
 
 while True:
-
-    choice = int(input("Input the no. of characters of the password you want : "))
-
+    try:
+        choice = int(input("Input the No. of characters of the password : "))
+    except:
+        print("\nEnter Numbers Only!")
+        
     if choice < 8 or choice > 16:
-        print("The Password should be in between 8 to 16 characters :/")
+        print("\nThe Password should be in between 8 to 16 characters :/\n")
 
     elif choice >= 8 or choice <= 16:
         password = ''
@@ -26,6 +29,8 @@ while True:
             random = secrets.choice(allchar)
             password += random  
         
-        print()
-        print("Here is You Secure Password :",password)
+        print('\n'+ '-'*50+'\n')
+        print("Here is You Secure Password :",password,'\n')
+        print('-'*50 +'\n')
+        print("="*150+'\n')
         break

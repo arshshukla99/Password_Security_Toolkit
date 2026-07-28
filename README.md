@@ -108,18 +108,10 @@ Step 3: Run the script
 $ python3 password_security_toolkit.py
 ```
 
-## Example Output
+---
+
+## Example Output for option 1) Password Audit
 ```
-┌──(kali㉿kali)-[~]
-└─$ git clone https://github.com/arshshukla99/Password_Security_Toolkit
-Cloning into 'Password_Security_Toolkit'...
-remote: Enumerating objects: 48, done.
-remote: Counting objects: 100% (48/48), done.
-remote: Compressing objects: 100% (46/46), done.
-remote: Total 48 (delta 21), reused 0 (delta 0), pack-reused 0 (from 0)
-Receiving objects: 100% (48/48), 22.89 KiB | 366.00 KiB/s, done.
-Resolving deltas: 100% (21/21), done.
-                                                                                                                                                                      
 ┌──(kali㉿kali)-[~/Documents/Projects/Password_Security_Toolkit]
 └─$ python3 password_security_toolkit.py
 
@@ -128,35 +120,40 @@ Resolving deltas: 100% (21/21), done.
 Welcome to Password Security Toolkit!
 A Strong Password can be a reason why your account will not be hijacked in Future...
 
-Enter Your Password Here for an Audit: oggy@1234
+Choose what tool to continue with :
+1) Password Audit
+2) Password Generation
+3) Exit
 
-====================================================================================================
-                                   PASSWORD AUDIT REPORT
-====================================================================================================
+Your Choice : 1
+Enter Your Password Here for an Audit: Superman@0381
 
-Password length        : 9 Characters
-Password Score         : 3 / 5
-Theoretical Entropy    : 54.79
-Entropy Rating         : Strong
+======================================================================================================================================================
+                                                            PASSWORD AUDIT REPORT
+======================================================================================================================================================
 
----------------------------------------------------------------------------
+Password length        : 13 Characters
+Password Score         : 5 / 5
+Theoretical Entropy    : 85.21
+Entropy Rating         : Very Strong
+
+----------------------------------------------------------------------------------------------------
 Attack Pattern Analysis
 
-Dictionary Word             : Found --> '1234'
-Sequential Numbers          : Found --> '1234'
+Dictionary Word             : Found --> 'superman'
+Sequential Numbers          : Not Found
 Repeated Blocks             : Not Found
-Keyboard Walks              : Found --> '1234'
+Keyboard Walks              : Not Found
 Alphabetical Sequence       : Not Found
 
-Estimated Crack time : 18.0 days
+Estimated Crack time : 71341903.0 years
 (This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)
 
----------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 Risk Assessment
 
-Although the password has Strong theoretical entropy but it contains 
-predictable human pattern which will reduce it resistance against 
-modern Password Cracking methods.
+This password is consistent with the modern password guidance but still contains limitations that does not align with the NIST Password Guidance.
+Consider Resolving the limitations by mitigations mentioned below.
 
 ---------------------------------------------------------------------------
 NIST Password Guidance
@@ -166,15 +163,66 @@ NIST Password Guidance
 • Use a unique password for every account.
 • Avoid dictionary words and predictable patterns.
 
----------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 Recommendations
 
-• Try to increase length of your password upto 12 Characters.
-• Try Adding some Uppercase Letters into your password also.
+None
 
-====================================================================================================
+======================================================================================================================================================
+
 
 Do you want to Audit Another Password ?
 Enter your Choice (Y/N) : n
 
+Choose what tool to continue with :
+1) Password Audit
+2) Password Generation
+3) Exit
+
+Your Choice : 3
+Exiting...
+
+```
+
+---
+
+## Example Output for Option 2) Password Generation
+
+```
+┌──(kali㉿kali)-[~/Documents/Projects/Password_Security_Toolkit]
+└─$ python3 password_security_toolkit.py
+
+=== Password Security Toolkit v0.7 ===
+
+Welcome to Password Security Toolkit!
+A Strong Password can be a reason why your account will not be hijacked in Future...
+
+Choose what tool to continue with :
+1) Password Audit
+2) Password Generation
+3) Exit
+
+Your Choice : 2
+
+======================================================================================================================================================
+                                                            PASSWORD GENERATION TOOL
+======================================================================================================================================================
+
+Input the No. of characters of the password : 13
+
+--------------------------------------------------
+
+Here is You Secure Password : g8IxBn.7ad4\O 
+
+--------------------------------------------------
+
+======================================================================================================================================================
+
+Choose what tool to continue with :
+1) Password Audit
+2) Password Generation
+3) Exit
+
+Your Choice : 3
+Exiting...
 ```

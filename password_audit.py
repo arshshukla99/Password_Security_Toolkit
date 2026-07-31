@@ -186,50 +186,17 @@ def recommendations(password, upper, digit, special, score, space):
     if space == 0:
         if score == 0 :
             print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
+            
             if upper == 0 or digit == 0 or special == 0 :
                 print("• Should be a mix of Uppercase, Lowercase, Digits or Spacial characters.\n")
 
-        elif score == 1 :
-            if len(password) < MIN_LENGTH:
-                print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
-            else:
-                if len(password) < MAX_LENGTH:
-                    print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
-                if upper == 0:
-                    print("• Try Adding some Uppercase Letters into your password also.")
-                if digit == 0 :
-                    print("• Try Adding some Integer Digits to your password also.")
-                if special == 0 :
-                    print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
+        elif score == MAX_SCORE:
+            print("No Recommendations")
 
-        elif score == 2:
-            if len(password) < MIN_LENGTH:
-                print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
-            else:
-                if len(password) < MAX_LENGTH:
-                    print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
-                if upper == 0:
-                   print("• Try Adding some Uppercase Letters into your password also.")
-                if digit == 0 :
-                    print("• Try Adding some Integer Digits to your password also.")
-                if special == 0 :
-                    print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
+        elif len(password) < MIN_LENGTH:
+            print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
 
-        elif score == 3 :
-            if len(password) < MIN_LENGTH:
-                print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
-            else:
-                if len(password) < MAX_LENGTH:
-                    print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
-                if upper == 0:
-                    print("• Try Adding some Uppercase Letters into your password also.")
-                if digit == 0 :
-                    print("• Try Adding some Integer Digits to your password also.")
-                if special == 0 :
-                    print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
-
-        elif score == 4:
-
+        else:
             if len(password) < MAX_LENGTH:
                 print(f"• Try to increase length of your password upto {MAX_LENGTH} Characters.")
             if upper == 0:
@@ -239,8 +206,6 @@ def recommendations(password, upper, digit, special, score, space):
             if special == 0 :
                 print("• Try Adding some Special Characters to your password as they can improve your Password Security.")
 
-        elif score == MAX_SCORE:
-            print("None")
     else:
         print("Your password should NOT contain Blank Spaces. Try Again...")
 

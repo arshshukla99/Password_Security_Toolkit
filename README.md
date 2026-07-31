@@ -113,7 +113,7 @@ $ python3 password_security_toolkit.py
 ## Example Output for option 1) Password Audit
 ```
 ┌──(kali㉿kali)-[~/Documents/Projects/Password_Security_Toolkit]
-└─$ python3 password_security_toolkit.py
+└─$ python3 main.py
 
 === Password Security Toolkit v0.7 ===
 
@@ -190,7 +190,7 @@ Exiting...
 
 ```
 ┌──(kali㉿kali)-[~/Documents/Projects/Password_Security_Toolkit]
-└─$ python3 password_security_toolkit.py
+└─$ python3 main.py
 
 === Password Security Toolkit v0.7 ===
 

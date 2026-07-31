@@ -107,7 +107,7 @@ $ cd Password_Security_Toolkit
 Step 3: Run the script
 
 ```
-$ python3 password_security_toolkit.py
+$ python3 main.py
 ```
 
 ---

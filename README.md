@@ -43,6 +43,8 @@ See the full development roadmap in **ROADMAP.md**.
 Password-Security-Toolkit/
 │
 ├── main.py
+├── password_audit.py
+├── password_generation.py
 ├── common_passwords.txt
 ├── keyboard_walks.txt
 ├── ROADMAP.md

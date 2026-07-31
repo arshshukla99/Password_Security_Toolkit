@@ -98,7 +98,7 @@ Estimate how long different attack types would take.
 **Learning Outcome:** 
 Understand why stolen password hashes are a much bigger threat than login forms.
 
-## 🚀 v0.8 — Secure Password Generator
+## 🚀 v0.8 — Secure Password Generator (Completed ✅)
 
 Generate cryptographically secure passwords.
 
@@ -119,29 +119,21 @@ Generate cryptographically secure passwords.
 **Learning Outcome:**
 Learn how secure passwords are generated in real systems.
 
-## 🚀 v0.9 — Architecture Refactor
+## 🚀 v0.9 — Architecture Refactor (Completed ✅)
 
 Transform the script into a maintainable application.
 
 **Features**
 - Modular project structure
-- Separate analysers
-- Knowledge folder
-- Report module
-- Cleaner main file
-- Folder Structure
+- Separate Pass Auditer
+- Separate Pass Generator
 
 **Password_Security_Toolkit/**
 main.py
-analyzer.py
-dictionary.py
-patterns.py
-entropy.py
-generator.py
-report.py
-knowledge/
+password_audit.py
+password_generation.py
 common_passwords.txt
-patterns.json
+keyboard_walks.txt
 
 **Python**
 - Importing modules

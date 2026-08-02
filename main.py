@@ -3,13 +3,13 @@ import subprocess
 
 print("\n=== Password Security Toolkit v0.8 ===\n")
 print("Welcome to Password Security Toolkit!")
-print("A Strong Password can be a reason why your account will not be hijacked in Future...\n")
+print("A Strong Password can be a reason why your account will not be hijacked in Future...")
 
 choice = 0
 
 while True:
     try:
-        choice = int(input("Choose what tool to continue with :\n1) Password Audit\n2) Password Generation\n3) Exit\n\nYour Choice : "))
+        choice = int(input("\nChoose what tool to continue with :\n1) Password Audit\n2) Password Generation\n3) Exit\n\nYour Choice : "))
     except:
         print("Invalid Choice!! Enter Numbers Only!\n")
         continue

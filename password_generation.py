@@ -16,21 +16,22 @@ choice = 0
 while True:
     try:
         choice = int(input("Input the No. of characters of the password : "))
-    except:
-        print("\nEnter Numbers Only!")
         
-    if choice < 8 or choice > 16:
-        print("\nThe Password should be in between 8 to 16 characters :/\n")
+        if choice < 8 or choice > 16:
+            print("\nThe Password should be in between 8 to 16 characters :/\n")
 
-    elif choice >= 8 or choice <= 16:
-        password = ''
+        else:
+            password = ''
         
-        for i in range(choice):
-            random = secrets.choice(allchar)
-            password += random  
+            for i in range(choice):
+                random = secrets.choice(allchar)
+                password += random  
         
-        print('\n'+ '-'*50+'\n')
-        print("Here is You Secure Password :",password,'\n')
-        print('-'*50 +'\n')
-        print("="*150+'\n')
-        break
+            print('\n'+ '-'*50+'\n')
+            print("Here is You Secure Password :",password,'\n')
+            print('-'*50 +'\n')
+            print("="*150+'\n')
+            break
+        
+    except:
+        print("\nError : Enter Numbers Only!\n")

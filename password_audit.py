@@ -105,7 +105,7 @@ def pattern_recognition_block(password):
             break
     return temp_block_found, temp_block
 
-#pattern_recognition_keyboard_walks() function check weather the password contains keyboard walks in the password.
+#pattern_recognition_keyboard_walks() function check weather the password contains keyboard walks in the password with the help of sliding window.
 def pattern_recognition_keyboard_walks(password):
     temp_walk_found = False
     temp_walk = ''
@@ -114,15 +114,15 @@ def pattern_recognition_keyboard_walks(password):
         with open("keyboard_walks.txt","r",encoding='utf-8',errors='ignore') as f:
             walks = f.read().splitlines()
 
-            for walk in walks:
-                if walk[:4] in password.lower() :
-                    temp_walk_found = True
-                    temp_walk = walk[:4]
-                    break
-                if walk[4:] in password.lower() :
-                    temp_walk_found = True
-                    temp_walk = walk[4:]
-                    break
+            for walk_size in range(4, 9):
+                for start_index in range(0, len(password) - walk_size + 1):
+                    walk = password[start_index : start_index + walk_size]
+
+                    for temp_walks in walks:
+                        if walk in temp_walks:
+                            temp_walk_found = True
+                            temp_walk = walk
+                            
         return temp_walk_found, temp_walk
 
     except:
@@ -362,3 +362,4 @@ while True:
 
     else:
         print("Invalid Choice! Give a choice by inputting single characters like 'y' or 'Y' or 'n' or 'N' ")
+        

@@ -1,5 +1,6 @@
 import sys
 import subprocess
+from pathlib import Path
 
 print("\n=== Password Security Toolkit v0.8 ===\n")
 print("Welcome to Password Security Toolkit!")
@@ -15,10 +16,10 @@ while True:
         continue
         
     if choice == 1:
-        subprocess.run([sys.executable,"password_audit.py"])
+        subprocess.run([sys.executable, Path(__file__).parent / "password_audit.py"])
         
     elif choice == 2:
-        subprocess.run([sys.executable,"password_generation.py"])
+        subprocess.run([sys.executable, Path(__file__).parent / "password_generation.py"])
         
     elif choice == 3:
         print("Exiting...")
@@ -27,4 +28,3 @@ while True:
     else:
         print("\nPlease Enter a Valid Choice !\n")
         
-

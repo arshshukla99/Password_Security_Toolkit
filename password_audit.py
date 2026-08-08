@@ -1,7 +1,5 @@
 import math
-
-password = input('Enter Your Password Here for an Audit: ')
-print()
+from pathlib import Path
 
 MIN_LENGTH = 8
 MAX_LENGTH = 12
@@ -49,7 +47,7 @@ def dict_check(password):
     temp_pass_found = False
     temp_word = ''
     try :
-        with open("common_passwords.txt", "r",encoding='utf-8',errors='ignore') as f:
+        with open(Path(__file__).parent/"data"/"common_passwords.txt", "r",encoding='utf-8',errors='ignore') as f:
             wordlist = f.read().rstrip("\n").splitlines()
             for i in wordlist:
                 if len(i) >= 3 and i in password.lower():
@@ -111,7 +109,7 @@ def pattern_recognition_keyboard_walks(password):
     temp_walk = ''
  
     try:
-        with open("keyboard_walks.txt","r",encoding='utf-8',errors='ignore') as f:
+        with open(Path(__file__).parent/"data"/"keyboard_walks.txt","r",encoding='utf-8',errors='ignore') as f:
             walks = f.read().splitlines()
 
             for walk_size in range(4, 9):
@@ -335,31 +333,38 @@ def pass_audit(password):
     print('\n' + "="*150 + '\n')
     
     try:
-        cp = open('common_passwords.txt')
+        cp = open(Path(__file__).parent/"data"/"common_passwords.txt")
     except:
         print("⚠ UNABLE TO FOUND 'common_password.txt'. Kindly install this wordlist for accurate analysis.")
 
     try:
-        kw = open('keyboard_walks.txt')
+        kw = open(Path(__file__).parent/"data"/"keyboard_walks.txt")
     except:
         print("⚠ UNABLE TO FOUND 'keyboard_walks.txt'. Kindly install this wordlist for accurate analysis.")
 
-#Initial Function call
-pass_audit(password)
+#If the user runs this password_audit.py itself this executes automatically but if the imports its file functions this will not execute
+def main():
 
-#Choice for the User if the user wants continuation on the password Audit
-while True:
-    choice = input("\nDo you want to Audit Another Password ?\nEnter your Choice (Y/N) : ")
-    if choice.lower() == "y":
-        retry_pass = input("\nEnter Another Password : ")
-        print()
-        password = retry_pass
+    password = input('Enter Your Password Here for an Audit: ')
+    print()
+
+    pass_audit(password)
+
+    #Choice for the User if the user wants continuation on the password Audit
+    while True:
+        choice = input("\nDo you want to Audit Another Password ?\nEnter your Choice (Y/N) : ")
+        if choice.lower() == "y":
+            retry_pass = input("\nEnter Another Password : ")
+            print()
+            password = retry_pass
         
-        pass_audit(password)
+            pass_audit(password)
                 
-    elif choice.lower() == 'n':
-        break
+        elif choice.lower() == 'n':
+            break
 
-    else:
-        print("Invalid Choice! Give a choice by inputting single characters like 'y' or 'Y' or 'n' or 'N' ")
-        
+        else:
+            print("Invalid Choice! Give a choice by inputting single characters like 'y' or 'Y' or 'n' or 'N' ")
+
+if __name__ == "__main__":
+    main()

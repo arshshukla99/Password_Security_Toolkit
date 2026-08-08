@@ -1,8 +1,8 @@
 # Password Security Toolkit
 
-A Python-based cybersecurity project that analyses passwords from an attacker's perspective instead of relying only on traditional password strength scoring.
+A Python-based cybersecurity toolkit that audits passwords from an attacker's perspective by combining password strength analysis, entropy calculation, pattern recognition, and crack-time estimation.
 
-Unlike basic password strength checkers, this toolkit identifies common attack patterns such as dictionary words, sequential numbers, keyboard walks, and repeated blocks while providing recommendations to improve password security.
+Unlike traditional password strength checkers, this toolkit explains **why** a password is weak and provides practical recommendations based on modern password security principles.
 
 This project is being developed incrementally to learn authentication security, password attacks, and secure software engineering.
 
@@ -10,30 +10,27 @@ This project is being developed incrementally to learn authentication security, 
 
 ## ✨ Features
 
-### Current Features (v0.7)
+### Password Audit
 
 - Password Strength Scoring
 - Password Complexity Analysis
 - Dictionary Word Detection
 - Common Password Detection
 - Sequential Number Detection
-- Repeating Block Detection
+- Repeated Block Detection
 - Keyboard Walk Detection
 - Alphabetical Sequence Detection
-- Password Improvement Suggestions
 - Password Entropy Calculation
-- Risk Assessment Suggestions based on Entropy and Pattern found
-- Offline Password Crack Estimation
+- Offline Password Crack Time Estimation
+- Risk Assessment Engine
+- NIST-inspired Security Guidance
+- Password Improvement Recommendations
 
----
+### Password Generation
 
-## 🚀 Planned Features
-
-- Secure Password Generator
-- Password Audit Reports
-- Password Policy Auditor (NIST Guidelines)
-
-See the full development roadmap in **ROADMAP.md**.
+- Cryptographically Secure Password Generation
+- Automatic Password Audit
+- Guaranteed Character Diversity
 
 ---
 
@@ -45,9 +42,9 @@ Password-Security-Toolkit/
 ├── main.py
 ├── password_audit.py
 ├── password_generation.py
-├── common_passwords.txt
-├── keyboard_walks.txt
-├── ROADMAP.md
+├── data/
+│   ├── common_passwords.txt
+│   └── keyboard_walks.txt
 └── README.md
 ```
 
@@ -55,12 +52,14 @@ Password-Security-Toolkit/
 
 ## 🛠 Technologies Used
 
-- Python 3.14.6
-- File Handling
-- String Algorithms
-- Pattern Recognition
+- Python 3.14+
+- secrets (Cryptographically Secure Random Number Generator)
+- math
+- pathlib
+- subprocess
+- String Processing
+- Pattern Recognition Algorithms
 - Modular Programming
-- Math Module
 
 ---
 
@@ -111,6 +110,20 @@ $ python3 main.py
 ```
 
 ---
+### You should see main menu like this
+```
+=== Password Security Toolkit v1.0 ===
+
+Welcome to Password Security Toolkit!
+A Strong Password can be a reason why your account will not be hijacked in Future...
+
+Choose what tool to continue with :
+1) Password Audit
+2) Password Generation
+3) Exit
+
+Your Choice :
+```
 
 ## Example Output for option 1) Password Audit
 ```
@@ -228,3 +241,12 @@ Choose what tool to continue with :
 Your Choice : 3
 Exiting...
 ```
+---
+
+## 🚀 Future Plans
+
+- Password Policy Auditor (NIST SP 800-63B)
+- Export Reports (PDF / HTML)
+- Password History Comparison
+- GUI Version
+- Unit Testing

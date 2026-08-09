@@ -2,57 +2,60 @@ import string
 import secrets
 from password_audit import pass_audit
 
-print('\n'+"="*150)
-print(" "*60 +"PASSWORD GENERATION TOOL")
+print('\n' + "="*150)
+print(" "*60 + "PASSWORD GENERATION TOOL")
 print("="*150 + '\n')
 
 lower = string.ascii_lowercase
 upper = string.ascii_uppercase
 digit = string.digits
 unichar = string.punctuation
-f_lower = False
-f_upper = False
-f_digit = False
-f_unichar = False
 
 allchar = upper + lower + digit + unichar
-choice = 0
 
 while True:
     try:
-        choice = int(input("Input the No. of characters of the password Starting from 8 to 16 : "))
+        choice = int(input("Input the No. of characters of the password (8-16): "))
         
         if choice < 8 or choice > 16:
-            print("\nThe Password should be in between 8 to 16 characters :/\n")
+            print("\nThe Password should be between 8 and 16 characters :/\n")
+            continue
 
-        else:
+        while True:
             password = ""
-        
-            for i in range(choice):
+            
+            for _ in range(choice):
                 random = secrets.choice(allchar)
                 password += random
 
+            f_lower = False
             for i in lower:
                 if i in password:
                     f_lower = True
+
+            f_upper = False
             for j in upper:
                 if j in password:
                     f_upper = True
+
+            f_digit = False
             for k in digit:
                 if k in password:
                     f_digit = True
+
+            f_unichar = False
             for l in unichar:
                 if l in password:
                     f_unichar = True
 
             if f_lower and f_upper and f_digit and f_unichar:
-                print('\n'+ '-'*50+'\n')
-                print("Here is You Secure Password :",password,'\n')
-                print('-'*50 +'\n')
+                print('\n' + '-'*50 + '\n')
+                print("Here is Your Secure Password:", password, '\n')
+                print('-'*50 + '\n')
                 pass_audit(password)
                 break
 
-            else:
-                continue
-    except:
-        print("\nError : Enter Numbers Only!\n")
+        break
+
+    except ValueError:
+        print("\nError: Enter numbers only!\n")

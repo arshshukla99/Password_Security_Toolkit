@@ -337,5 +337,5 @@ Exiting...
 
 ---
 
-##Some Limitations :
+## Some Limitations :
 This tool estimates strength using theoretical entropy and known attack patterns (dictionary words, keyboard walks, sequences). It cannot detect passwords that are weak for reasons outside these checks — for example, a password that's meaningful to the user personally (a pet's name plus birth year, a phrase from a targeted attacker's own reconnaissance) can score "Very Strong" here while still being highly guessable by someone who knows the victim, since that kind of guessability isn't reducible to character-set entropy or generic wordlists.

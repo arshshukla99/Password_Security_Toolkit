@@ -35,7 +35,7 @@ This project is being developed incrementally to learn authentication security, 
 ### Password Breach Check
 
 - SHA-1 Hash Conversion
-- HIBP API Call using requets Module
+- HIBP API Call using requests Module
 - Proper Error Handling
 
 ---
@@ -59,7 +59,7 @@ Password-Security-Toolkit/
 
 ## 🛠 Technologies Used
 
-- Python 3.14+
+- Python 3.14.6
 - secrets (Cryptographically Secure Random Number Generator)
 - math
 - pathlib
@@ -77,14 +77,10 @@ This project is designed as a learning journey through modern password security 
 
 - Password Composition
 - Dictionary Attacks
-- Password Spraying
-- Rule-Based Attacks
-- Hybrid Attacks
 - Pattern Recognition
-- Keyboard Walks
 - Authentication Security
 - API Calls
-- Secure Password Storing Methodologies
+- Secured Password Analysis
 ---
 
 ## 🎯 Learning Goals
@@ -95,7 +91,7 @@ The purpose of this project is not only to build a password analyser but also to
 - Why human-created passwords are predictable
 - How password policies improve authentication security
 - How to design modular cybersecurity software
-- How passwords are found can be found in Data Breaches
+- How passwords can be found in Data Breaches
 
 ---
 
@@ -338,3 +334,8 @@ Exiting...
 
 ### 3) Password Breach Check Preview
 <img width="1365" height="722" alt="4" src="https://github.com/user-attachments/assets/d0cbf22a-8768-4b64-86b5-f2a674c2524e" />
+
+---
+
+##Some Limitations :
+This tool estimates strength using theoretical entropy and known attack patterns (dictionary words, keyboard walks, sequences). It cannot detect passwords that are weak for reasons outside these checks — for example, a password that's meaningful to the user personally (a pet's name plus birth year, a phrase from a targeted attacker's own reconnaissance) can score "Very Strong" here while still being highly guessable by someone who knows the victim, since that kind of guessability isn't reducible to character-set entropy or generic wordlists.

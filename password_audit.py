@@ -1,5 +1,7 @@
 import math
+import getpass
 from pathlib import Path
+from password_breach_search import pass_hash, check_breach
 
 MIN_LENGTH = 8
 MAX_LENGTH = 12
@@ -225,8 +227,11 @@ def risk_assessment(final_entropy_report, risk_points):
     elif risk_points >= 5 and risk_points < 8 :
         print(f"This password has {final_entropy_report} theoretical entropy. Therefore, It has \nenrtropy score under the safe criteria as well as it \ncontains predictable human patterns which will highly reduce \nits resistance against modern Password Cracking methods.\n")
 
-    elif risk_points >= 8 :
+    elif risk_points >= 8 and risk_points < 15:
         print("This password will have very weak resistance against modern Password Cracking methods and can be easily exploited. Consider Changing it as soon as possible.\n")
+
+    elif risk_points >= 15:
+        print(f"This Password is Found in Previous Data Breaches. Therefore, This password have very weak resistance against modern Password Cracking methods and can be easily exploited. Consider Changing it as soon as possible.\n")
 
 #crack_time() function checks the cracking time of password from the attacker perspective if he trys offline password cracking with modern GPUs.
 def crack_time(password, upper, lower, digit, special):
@@ -270,6 +275,15 @@ def pass_audit(password):
     
     #The Theoretical Entropy Evaluation
     entropy, final_entropy_report, risk_points = entropy_check(upper, lower, digit, special)
+
+    #Changing Score to 0 is Password Found in Data Breach
+    sha1_pass = pass_hash(password)
+    breach_found, breach_no = check_breach(sha1_pass)
+    if breach_found:
+        score = 0
+        risk_points += 15
+
+    #The Final Password Specifications
     print(f"Password length        : {len(password)} Characters")
     print(f"Password Score         : {score} / 5")
     print(f"Theoretical Entropy    : {round(entropy,2)}")
@@ -319,7 +333,10 @@ def pass_audit(password):
         print("Alphabetical Sequence       : Not Found\n")
     
     pass_crack_time = crack_time(password, upper, lower, digit, special)
-    print(f"Estimated Crack time : {pass_crack_time}\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
+    if breach_found:
+        print(f"Estimated Crack time : few hours because found in the Previous Data Breaches\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
+    else:
+        print(f"Estimated Crack time : {pass_crack_time}\n(This estimation is according to number of guesses mordern GPUs can make per seconds (i.e. 100 billion) if an attacker trys to crack password offline.)\n")
     
     
     print('-'*100 + '')
@@ -345,7 +362,7 @@ def pass_audit(password):
 #If the user runs this password_audit.py itself this executes automatically but if the imports its file functions this will not execute
 def main():
 
-    password = input('Enter Your Password Here for an Audit: ')
+    password = getpass.getpass("Enter you password here for an Audit: ")
     print()
 
     pass_audit(password)
@@ -354,7 +371,7 @@ def main():
     while True:
         choice = input("\nDo you want to Audit Another Password ?\nEnter your Choice (Y/N) : ")
         if choice.lower() == "y":
-            retry_pass = input("\nEnter Another Password : ")
+            retry_pass = getpass.getpass("Enter Another Password: ")
             print()
             password = retry_pass
         

@@ -329,9 +329,12 @@ Exiting...
 ## Screenshots
 ### Main Menu
 <img width="1365" height="719" alt="1" src="https://github.com/user-attachments/assets/3d04eba1-f757-45f3-9b1a-b03b424649f6" />
-### Option 1) Password Audit Preview
+
+### 1) Password Audit Preview
 <img width="1365" height="720" alt="2" src="https://github.com/user-attachments/assets/0d2b349e-95c0-4134-81bf-57318d53e395" />
-### Option 2) Password Generation Preview
+
+### 2) Password Generation Preview
 <img width="1365" height="719" alt="3" src="https://github.com/user-attachments/assets/7f3c7583-da8e-4bae-996c-2085a42f2944" />
-### Option 3) Password Breach Check Preview
+
+### 3) Password Breach Check Preview
 <img width="1365" height="722" alt="4" src="https://github.com/user-attachments/assets/d0cbf22a-8768-4b64-86b5-f2a674c2524e" />

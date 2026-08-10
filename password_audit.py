@@ -220,12 +220,12 @@ def risk_assessment(final_entropy_report, risk_points):
         print("NIST Password Guidance\n\n• Use passwords of at least 12–16 characters.\n• Prefer randomly generated passwords.\n• Use a unique password for every account.\n• Avoid dictionary words and predictable patterns.\n")
 
     elif risk_points >= 3 and risk_points < 5:
-        print(f"Although the password has {final_entropy_report} theoretical entropy but it contains \npredictable human pattern which will reduce it resistance against \nmodern Password Cracking methods.\n")
+        print(f"Although the password has {final_entropy_report} theoretical entropy but it contains \npredictable human pattern which will reduce its resistance against \nmodern Password Cracking methods.\n")
         print('-'*75 + '')
         print("NIST Password Guidance\n\n• Use passwords of at least 12–16 characters.\n• Prefer randomly generated passwords.\n• Use a unique password for every account.\n• Avoid dictionary words and predictable patterns.\n")
 
     elif risk_points >= 5 and risk_points < 8 :
-        print(f"This password has {final_entropy_report} theoretical entropy. Therefore, It has \nenrtropy score under the safe criteria as well as it \ncontains predictable human patterns which will highly reduce \nits resistance against modern Password Cracking methods.\n")
+        print(f"This password have {final_entropy_report} theoretical entropy. Therefore, It has \nentropy score under the safe criteria as well as it \ncontains predictable human patterns which will highly reduce \nits resistance against modern Password Cracking methods.\n")
 
     elif risk_points >= 8 and risk_points < 15:
         print("This password will have very weak resistance against modern Password Cracking methods and can be easily exploited. Consider Changing it as soon as possible.\n")

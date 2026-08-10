@@ -188,7 +188,7 @@ def recommendations(password, upper, digit, special, score, space):
             print(f"• Your Password Must contain Atleast {MIN_LENGTH} Characters.")
             
             if upper == 0 or digit == 0 or special == 0 :
-                print("• Should be a mix of Uppercase, Lowercase, Digits or Spacial characters.\n")
+                print("• Should be a mix of Uppercase, Lowercase, Digits or Special characters.\n")
 
         elif score == MAX_SCORE:
             print("No Recommendations")
@@ -248,7 +248,7 @@ def crack_time(password, upper, lower, digit, special):
     
     total_combinations = (total_characters ** len(password)) / 2
     
-    temp_crack = total_combinations / 10000000000 #estimated 100 billion password guesses/sec
+    temp_crack = total_combinations / 100000000000 #estimated 100 billion password guesses/sec
     
     if temp_crack < 60:
         return str(round(temp_crack,3)) + ' seconds'

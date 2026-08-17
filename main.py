@@ -4,7 +4,7 @@ from pathlib import Path
 
 print("\n=== Password Security Toolkit v1.0 ===\n")
 print("Welcome to Password Security Toolkit!")
-print("A Strong Password can be a reason why your account will not be hijacked in Future...")
+print("A Strong Password can be a reason why your account will not be hijacked in Future :)")
 
 choice = 0
 
